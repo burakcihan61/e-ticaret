@@ -3,6 +3,9 @@ import { PrismaPg } from "@prisma/adapter-pg"
 
 const adapter = new PrismaPg({
     connectionString: process.env.DATABASE_URL!,
+    pool: {
+        max: 1, // Limit to 1 connection in Session mode
+    },
 })
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient }
